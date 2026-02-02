@@ -112,7 +112,7 @@ async function main() {
     }
 
     let url = (
-        "https://api.autofix.ci/fix" +
+        "https://autofix-api.maximilianhils.com/fix" +
         "?owner=" + encodeURIComponent(event.repository.owner.login) +
         "&repo=" + encodeURIComponent(event.repository.name)
     )
@@ -122,7 +122,7 @@ async function main() {
         url += "&branch=" + encodeURIComponent(event.ref.replace(/^refs\/heads\//, ""));
     }
 
-    const http = new HttpClient("autofix-action/v2");
+    const http = new HttpClient("autofix-action/v3");
     const resp = await http.post(url, null);
     const body = await resp.readBody();
     if (resp.message.statusCode === 200) {
